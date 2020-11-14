@@ -1,3 +1,3 @@
-# PHP_MVPRestAPI
+# PHP_MVCRestAPI
 
 PHP Rest API with MVC design pattern
