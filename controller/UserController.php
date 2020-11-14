@@ -13,6 +13,24 @@ class UserController
             echo BaseController::JsonResponseError(500,$ex->getMessage());
         }
     }
+    public static function GetUser($id){
+        try {
+            $pdo = BaseController::GetPDO(dbConfig::$host, dbConfig::$dbname, dbConfig::$username, dbConfig::$password);
+            $data = UserModel::get($pdo,$id);
+            echo BaseController::JsonResponseOKList(200, "OK", $data, "1");
+        }catch (Exception $ex){
+            echo BaseController::JsonResponseError(500,$ex->getMessage());
+        }
+    }
+    public static function SearchUser($name,$last_name){
+        try {
+            $pdo = BaseController::GetPDO(dbConfig::$host, dbConfig::$dbname, dbConfig::$username, dbConfig::$password);
+            $data = UserModel::search($pdo,$name,$last_name);
+            echo BaseController::JsonResponseOKList(200, "OK", $data, UserModel::getCountSearch($pdo,$name,$last_name));
+        }catch (Exception $ex){
+            echo BaseController::JsonResponseError(500,$ex->getMessage());
+        }
+    }
     public static function AddUser($name,$last_name,$comment){
         try {
             $pdo = BaseController::GetPDO(dbConfig::$host, dbConfig::$dbname, dbConfig::$username, dbConfig::$password);
@@ -31,14 +49,6 @@ class UserController
             echo BaseController::JsonResponseError(500,$ex->getMessage());
         }
     }
-    public static function GetUser($id){
-        try {
-            $pdo = BaseController::GetPDO(dbConfig::$host, dbConfig::$dbname, dbConfig::$username, dbConfig::$password);
-            $data = UserModel::get($pdo,$id);
-            echo BaseController::JsonResponseOKList(200, "OK", $data, "1");
-        }catch (Exception $ex){
-            echo BaseController::JsonResponseError(500,$ex->getMessage());
-        }
-    }
+
 }
 ?>

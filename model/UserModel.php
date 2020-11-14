@@ -25,8 +25,10 @@ class UserModel
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
     }
-    public static function search($name) {
-
+    public static function search($pdo,$name,$last_name) {
+        $statement = $pdo->prepare("SELECT * FROM Users WHERE name LIKE ? and lname LIKE ?");
+        $statement->execute(["%".$name."%","%".$last_name."%"]);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
     public static function update(){
 
@@ -34,6 +36,12 @@ class UserModel
     public static function getCount($pdo){
         $statement = $pdo->prepare("SELECT count(*) as count FROM Users");
         $statement->execute();
+        $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $data[0]['count'];
+    }
+    public static function getCountSearch($pdo,$name,$last_name){
+        $statement = $pdo->prepare("SELECT count(*) as count FROM Users WHERE name LIKE ? and lname LIKE ?");
+        $statement->execute(["%".$name."%","%".$last_name."%"]);
         $data = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $data[0]['count'];
     }
