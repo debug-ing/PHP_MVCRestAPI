@@ -2,16 +2,16 @@
 
 PHP Rest API with MVC design pattern
 
-- [ ] Select All OK
-- [ ] Select Single OK
-- [ ] Insert OK
-- [ ] Search OK
-- [ ] Delete OK
+- [x] Select All 
+- [x] Select Single 
+- [x] Insert 
+- [x] Search 
+- [x] Delete 
 
 
-Update coming soon...
-Redise coming soon...
-Pagination coming soon...
+- [ ] Update coming soon...
+- [ ] Redise coming soon...
+- [ ] Pagination coming soon...
 
 Telegram : @debug_ing
 Instagram : @debug_ing
