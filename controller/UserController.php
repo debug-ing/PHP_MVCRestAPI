@@ -13,19 +13,31 @@ class UserController
             echo BaseController::JsonResponseError(500,$ex->getMessage());
         }
     }
-    public static function AddUser(){
+    public static function AddUser($name,$last_name,$comment){
         try {
             $pdo = BaseController::GetPDO(dbConfig::$host, dbConfig::$dbname, dbConfig::$username, dbConfig::$password);
-            $data = UserModel::add($pdo,$_POST['name'],$_POST['lname'],$_POST['comment']);
+            $data = UserModel::add($pdo,$name,$last_name,$comment);
+            echo BaseController::JsonResponseInsert(200,"ok",UserModel::getCount($pdo),UserModel::get($pdo,$data));
         }catch (Exception $ex){
             echo BaseController::JsonResponseError(500,$ex->getMessage());
         }
     }
-    public static function DeleteUser(){
+    public static function DeleteUser($id){
         try{
-
+            $pdo = BaseController::GetPDO(dbConfig::$host, dbConfig::$dbname, dbConfig::$username, dbConfig::$password);
+            UserModel::delete($pdo,$id);
+            echo BaseController::JsonResponseDelete(200,"OK",$id);
         }catch (Exception $ex){
-
+            echo BaseController::JsonResponseError(500,$ex->getMessage());
+        }
+    }
+    public static function GetUser($id){
+        try {
+            $pdo = BaseController::GetPDO(dbConfig::$host, dbConfig::$dbname, dbConfig::$username, dbConfig::$password);
+            $data = UserModel::get($pdo,$id);
+            echo BaseController::JsonResponseOKList(200, "OK", $data, "1");
+        }catch (Exception $ex){
+            echo BaseController::JsonResponseError(500,$ex->getMessage());
         }
     }
 }

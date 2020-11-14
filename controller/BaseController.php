@@ -9,12 +9,18 @@ class BaseController
         return $pdo;
     }
     public static function JsonResponseOKList($code,$message,$data,$count){
-        return json_encode( (object) ['code'=>$code,'message'=>$message,'count'=>$count,"data"=>$data]);
+        return json_encode( (object) ['code'=>$code,'message'=>$message,"data"=>$data,'count'=>$count]);
     }
     public static function JsonResponseError($code,$message){
         return json_encode( (object) ['code'=>$code,'message'=>$message]);
     }
-    public static function JsonResponseInsert($code,$message,$id){
-        return json_encode( (object) ['code'=>$code,'message'=>$message,'inserted-id'=>$id]);
+    public static function JsonResponseInsert($code,$message,$count,$data){
+        return json_encode( (object) ['code'=>$code,'message'=>$message,'Data'=>$data,'count'=>$count]);
+    }
+    public static function JsonResponseDelete($code,$message,$id){
+        return json_encode( (object) ['code'=>$code,'message'=>$message,'Deleted-id'=>$id]);
+    }
+    public static function SetHeader(){
+        header('Content-Type: application/json');
     }
 }
