@@ -2,11 +2,11 @@
 
 PHP Rest API with MVC design pattern
 
-Select All OK
-Select Single OK
-Insert OK
-Search OK
-Delete OK
+- [x] Select All OK
+- [x] Select Single OK
+- [x] Insert OK
+- [x] Search OK
+- [x] Delete OK
 
 
 Update coming soon...
