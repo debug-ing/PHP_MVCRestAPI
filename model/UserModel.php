@@ -16,7 +16,7 @@ class UserModel
 
     }
     public static function delete() {
-
+        //
     }
     public static function search() {
 
