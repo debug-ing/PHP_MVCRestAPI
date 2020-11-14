@@ -1,6 +1,6 @@
 # Sample PHP Rest API With MVC design pattern
 
-Simple PHP Rest API with MVC design pattern
+
 
 - [x] Select All 
 - [x] Select Single 
