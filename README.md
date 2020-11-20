@@ -6,11 +6,11 @@
 - [x] Select Single 
 - [x] Insert 
 - [x] Search 
-- [x] Delete 
+- [x] Delete
+- [x] Redise For Catch Data
 
 
 - [ ] Update coming soon...
-- [ ] Redise coming soon...
 - [ ] Pagination coming soon...
 
 Telegram : @debug_ing
