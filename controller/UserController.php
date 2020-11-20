@@ -2,16 +2,24 @@
 include_once 'BaseController.php';
 include_once './config/dbConfig.php';
 include_once './model/UserModel.php';
+include_once 'RedisController.php';
 class UserController
 {
     public static function GetAllUser(){
-        try {
-            $pdo = BaseController::GetPDO(dbConfig::$host, dbConfig::$dbname, dbConfig::$username, dbConfig::$password);
-            $data = UserModel::getAll($pdo);
-            echo BaseController::JsonResponseOKList(200, "OK", $data, UserModel::getCount($pdo));
-        }catch (Exception $ex){
-            echo BaseController::JsonResponseError(500,$ex->getMessage());
-        }
+            try {
+                RedisController::Connect();
+                if (RedisController::Check("all_user") == false){
+                    $pdo = BaseController::GetPDO(dbConfig::$host, dbConfig::$dbname, dbConfig::$username, dbConfig::$password);
+                    $data = UserModel::getAll($pdo);
+                    $data =  BaseController::JsonResponseOKList(200, "OK", $data, UserModel::getCount($pdo));
+                    RedisController::Add("all_user",$data);
+                    echo $data;
+                }else{
+                    echo RedisController::Get("all_user");
+                }
+            }catch (Exception $ex){
+                echo BaseController::JsonResponseError(500,$ex->getMessage());
+            }
     }
     public static function GetUser($id){
         try {
