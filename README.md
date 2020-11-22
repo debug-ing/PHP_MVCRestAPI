@@ -8,9 +8,8 @@
 - [x] Search 
 - [x] Delete
 - [x] Redise For Catch Data
+- [x] Update
 
-
-- [ ] Update coming soon...
 - [ ] Pagination coming soon...
 
 Telegram : @debug_ing
