@@ -53,9 +53,12 @@
     });
     ROUTE::post('/api/updateUser',function (){
         BaseController::SetHeader();
-        if(isset($_POST["id"])){
+        if(isset($_POST["id"]) && isset($_POST["name"]) && isset($_POST["last_name"]) && isset($_POST["comment"])){
             $id = $_POST["id"];
-            UserController::DeleteUser($id);
+            $name = $_POST["name"];
+            $last_name = $_POST["last_name"];
+            $comment = $_POST["comment"];
+            UserController::UpdateUser($id,$name,$last_name,$comment);
         }else{
             echo BaseController::JsonResponseError(500,"Please Send ID");
         }

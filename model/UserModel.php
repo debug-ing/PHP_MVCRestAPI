@@ -30,8 +30,10 @@ class UserModel
         $statement->execute(["%".$name."%","%".$last_name."%"]);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
-    public static function update(){
-
+    public static function update($pdo,$id,$name,$last_name,$comment){
+        $statement = $pdo->prepare("UPDATE Users SET name=?,lname=?,comment=? WHERE id = :id");
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute([$name,$last_name,$comment]);
     }
     public static function getCount($pdo){
         $statement = $pdo->prepare("SELECT count(*) as count FROM Users");

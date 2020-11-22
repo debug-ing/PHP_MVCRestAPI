@@ -48,15 +48,25 @@ class UserController
             echo BaseController::JsonResponseError(500,$ex->getMessage());
         }
     }
-    public static function DeleteUser($id){
-        try{
+    public static function DeleteUser($id)
+    {
+        try {
             $pdo = BaseController::GetPDO(dbConfig::$host, dbConfig::$dbname, dbConfig::$username, dbConfig::$password);
-            UserModel::delete($pdo,$id);
-            echo BaseController::JsonResponseDelete(200,"OK",$id);
-        }catch (Exception $ex){
-            echo BaseController::JsonResponseError(500,$ex->getMessage());
+            UserModel::delete($pdo, $id);
+            echo BaseController::JsonResponseDelete(200, "OK", $id);
+        } catch (Exception $ex) {
+            echo BaseController::JsonResponseError(500, $ex->getMessage());
         }
     }
 
+    public static function UpdateUser($id,$name,$last_name,$comment){
+        try{
+            $pdo = BaseController::GetPDO(dbConfig::$host, dbConfig::$dbname, dbConfig::$username, dbConfig::$password);
+            UserModel::update($pdo,$id,$name,$last_name,$comment);
+            echo BaseController::JsonResponseUpdate(200,"OK",$id);
+        }catch (Exception $ex){
+            echo BaseController::JsonResponseError(500, $ex->getMessage());
+        }
+    }
 }
 ?>

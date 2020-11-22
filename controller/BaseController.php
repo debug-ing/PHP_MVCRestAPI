@@ -20,6 +20,9 @@ class BaseController
     public static function JsonResponseDelete($code,$message,$id){
         return json_encode( (object) ['code'=>$code,'message'=>$message,'Deleted-id'=>$id]);
     }
+    public static function JsonResponseUpdate($code,$message,$id){
+        return json_encode( (object) ['code'=>$code,'message'=>$message,'Update-id'=>$id]);
+    }
     public static function SetHeader(){
         header('Content-Type: application/json');
     }
